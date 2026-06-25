@@ -1,0 +1,3 @@
+[build]
+  command = "flet publish main.py"
+  publish = "dist"
