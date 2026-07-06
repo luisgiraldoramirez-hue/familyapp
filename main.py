@@ -1,19 +1,4 @@
-import flet as ft
-from gtts import gTTS
-import os
-from playsound import playsound
-import json
-import speech_recognition as sr
-import winsound  #  "Bing"
 
-def main(page: ft.Page):
-    page.title = "Laboratorio de Ingles - FamilyApp"
-    page.window_width = 460
-    page.window_height = 760 
-    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    page.vertical_alignment = ft.MainAxisAlignment.START
-    #  Autor
-    marca_agua = ft.Text(
         "El taller del Orfebre",
         style=ft.TextThemeStyle.BODY_SMALL,
         opacity=0.3,          # marca de agua
