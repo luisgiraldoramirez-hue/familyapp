@@ -148,7 +148,7 @@ def main(page: ft.Page):
                 ft.Container(
                     content=ft.Text("🔔 Sonar Señal", color="white", weight=ft.FontWeight.BOLD, text_align=ft.TextAlign.CENTER),
                     bgcolor="blue",
-                    padding=ft.Padding.symmetric(vertical=12, horizontal=24),
+                    padding=ft.padding.symmetric(vertical=12, horizontal=24),
                     border_radius=8,
                     on_click=escuchar_alumno,
                     width=220
