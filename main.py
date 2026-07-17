@@ -67,20 +67,20 @@ def actualizar_pantalla():
         page.update()
 
     # NAVEGACIÓN
-    def cambiar_a_principiantes(e):
+def cambiar_a_principiantes(e):
         txt_resultado.value = ""
         estado["nivel"] = "Principiantes"
         estado["indice"] = 0
         actualizar_pantalla()
 
-    def cambiar_a_avanzados(e):
+def cambiar_a_avanzados(e):
         txt_resultado.value = ""
         estado["nivel"] = "Avanzados"
         estado["indice"] = 0
         actualizar_pantalla()
 
     # AUDIO TUTOR (Usa la voz del propio navegador de internet)
-    def escuchar_tutor(e):
+def escuchar_tutor(e):
         nivel = estado["nivel"]
         indice = estado["indice"]
         frase = datos_curso[nivel][indice]["en"]
@@ -99,17 +99,17 @@ def actualizar_pantalla():
             print(f"Error con la voz nativa: {error}")
 
     # MICRÓFONO
-  def escuchar_alumno(e):
+def escuchar_alumno(e):
         txt_resultado.value = ""
         txt_tu_voz.value = "Micro del navegador en desarrollo..."
         txt_tu_voz.color = "orange"
         page.update():
 
-    def revelar_clic(e):
+def revelar_clic(e):
         txt_espanol.visible = True
         page.update()
 
-    def acierto_juego(e):
+def acierto_juego(e):
         txt_resultado.value = ""
         nivel = estado["nivel"]
         indice = estado["indice"]
@@ -119,7 +119,7 @@ def actualizar_pantalla():
             estado["indice"] = 0
         actualizar_pantalla()
 
-    def fallo_juego(e):
+def fallo_juego(e):
         nivel = estado["nivel"]
         indice = estado["indice"]
         if len(datos_curso[nivel]) > 1:
