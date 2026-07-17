@@ -75,8 +75,7 @@ def main(page: ft.Page):
         estado["nivel"] = "Avanzados"
         estado["indice"] = 0
         actualizar_pantalla()
-
-    # AUDIO TUTOR (Voz nativa del navegador)
+        
     def escuchar_tutor(e):
         nivel = estado["nivel"]
         indice = estado["indice"]
@@ -90,7 +89,8 @@ def main(page: ft.Page):
         window.speechSynthesis.speak(msg);
         """
         try:
-            page.execute_js(codigo_js)
+            # En minúsculas y sin mezclas, este es el oficial de Flet
+            page.run_javascript(codigo_js)
         except Exception as error:
             print(f"Error con la voz nativa: {error}")
 
