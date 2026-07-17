@@ -46,7 +46,7 @@ def main(page: ft.Page):
     txt_tu_voz = ft.Text(value="Tu transcripción aparecerá aquí...", size=16, color="grey", italic=True, text_align=ft.TextAlign.CENTER)
     txt_resultado = ft.Text(value="", size=18, weight=ft.FontWeight.BOLD, text_align=ft.TextAlign.CENTER)
     
-    def actualizar_pantalla():
+def actualizar_pantalla():
         nivel = estado["nivel"]
         indice = estado["indice"]
         
