@@ -133,7 +133,7 @@ def fallo_juego(e):
         actualizar_pantalla()
 
     # BOTONES CON ELEVATEDBUTTON PARA EVITAR ERRORES WEB
-    fila_niveles = ft.Row(
+        fila_niveles = ft.Row(
         controls=[
             ft.ElevatedButton("🌱 Principiantes", on_click=cambiar_a_principiantes),
             ft.ElevatedButton("🚀 Avanzados", on_click=cambiar_a_avanzados),
