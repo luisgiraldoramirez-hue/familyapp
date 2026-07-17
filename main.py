@@ -108,15 +108,15 @@ def main(page: ft.Page):
         actualizar_pantalla()
 
     # BOTONES ORIGINALES
-    btn_principiantes = ft.Button("🌱 Principiantes", on_click=cambiar_a_principiantes)
-    btn_avanzados = ft.Button("🚀 Avanzados", on_click=cambiar_a_avanzados)
+    btn_principiantes = ft.ElevatedButton("🌱 Principiantes", on_click=cambiar_a_principiantes)
+    btn_avanzados = ft.ElevatedButton("🚀 Avanzados", on_click=cambiar_a_avanzados)
     
-    btn_tutor = ft.Button("🔊 Escuchar Tutor", on_click=escuchar_tutor)
-    btn_senal = ft.Button("🔔 Sonar Señal", on_click=escuchar_alumno)
-    btn_significado = ft.Button("👁️ Ver Significado", on_click=revelar_clic)
+    btn_tutor =ft.ElevatedButton ("🔊 Escuchar Tutor", on_click=escuchar_tutor)
+    btn_senal = ft.ElevatedButton("🔔 Sonar Señal", on_click=escuchar_alumno)
+    btn_significado =ft.ElevatedButton("👁️ Ver Significado", on_click=revelar_clic)
     
-    btn_no = ft.Button("Aún no 🔴", on_click=fallo_juego)
-    btn_si = ft.Button("¡Lo logré! 🟢", on_click=acierto_juego)
+    btn_no =ft.ElevatedButton("Aún no 🔴", on_click=fallo_juego)
+    btn_si = ft.ElevatedButton("¡Lo logré! 🟢", on_click=acierto_juego)
 
     page.add(
         ft.Text("Laboratorio de Idiomas - Escritorio", size=12, color="grey"),
