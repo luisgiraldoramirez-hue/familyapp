@@ -69,20 +69,27 @@ def main(page: ft.Page):
         actualizar_pantalla()
         
     # AUDIO TUTOR
+   # AUDIO TUTOR (Versión Web Nativa - Adiós errores de audio y CORS)
     def escuchar_tutor(e):
         nivel = estado["nivel"]
         indice = estado["indice"]
         frase = datos_curso[nivel][indice]["en"]
         
-        frase_url = frase.replace(" ", "%20")
-        enlace_google = f"https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q={frase_url}"
+        # Este código JavaScript le dice al navegador: "Habla tú en inglés"
+        # Usamos un truco para limpiar comillas sencillas si las hubiera
+        frase_limpia = frase.replace("'", "\\'")
+        
+        codigo_js = f"""
+        var msg = new SpeechSynthesisUtterance('{frase_limpia}');
+        msg.lang = 'en-US';
+        window.speechSynthesis.speak(msg);
+        """
         
         try:
-            audio_web.src = enlace_google
-            page.update()
-            audio_web.play()
+            page.run_javascript(codigo_js)
         except Exception as error:
-            print(f"Error al reproducir en la web: {error}")
+            print(f"Error con la voz nativa: {error}")
+           
             
     def escuchar_alumno(e):
         txt_resultado.value = ""
