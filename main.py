@@ -6,9 +6,7 @@ def main(page: ft.Page):
     page.title = "Laboratorio de Inglés - FamilyApp"
     page.window_width = 450
     page.window_height = 700
-    # REPRODUCTOR WEB (Para que funcione en internet)
-    audio_web = ft.Audio(autoplay=False)
-    page.overlay.append(audio_web)
+ 
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.START
     
