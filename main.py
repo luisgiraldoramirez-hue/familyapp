@@ -103,7 +103,7 @@ def escuchar_alumno(e):
         txt_resultado.value = ""
         txt_tu_voz.value = "Micro del navegador en desarrollo..."
         txt_tu_voz.color = "orange"
-        page.update():
+        page.update()
 
 def revelar_clic(e):
         txt_espanol.visible = True
