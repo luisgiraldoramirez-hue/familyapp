@@ -1,6 +1,6 @@
 import flet as ft
 import json
-import os
+#import os
 
 def main(page: ft.Page):
     page.title = "Laboratorio de Inglés - FamilyApp"
@@ -69,14 +69,23 @@ def main(page: ft.Page):
         estado["nivel"] = "Avanzados"
         estado["indice"] = 0
         actualizar_pantalla()
-
-    # EL TUTOR (Usa la voz del sistema operativo de tu PC, sin internet)
+        
+   # AUDIO TUTOR (Versión Web compatible con Netlify)
     def escuchar_tutor(e):
-        frase = txt_ingles.value
-        # Comando nativo para que Windows o tu PC hable directamente
-        page.run_javascript(f'window.speechSynthesis.speak(new SpeechSynthesisUtterance("{frase}"));')
+        nivel = estado["nivel"]
+        indice = estado["indice"]
+        frase = datos_curso[nivel][indice]["en"]
+        
+      
+        frase_url = frase.replace(" ", "%20")
+        enlace_google = f"https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q={frase_url}"
+        
+        try:
+            audio_web.src = enlace_google
+            audio_web.play()
+        except Exception as error:
+            print(f"Error al reproducir en la web: {error}")
 
-    # SONIDO DE BING (Al instante)
     def escuchar_alumno(e):
         txt_resultado.value = ""
         try:
