@@ -1,6 +1,5 @@
 import flet as ft
 import json
-#import speech_recognition as sr
 
 def main(page: ft.Page):
     page.title = "Laboratorio de Inglés - FamilyApp"
@@ -23,13 +22,11 @@ def main(page: ft.Page):
         with open("frases.json", "r", encoding="utf-8") as archivo_json:
             datos_curso = json.load(archivo_json)
     except Exception:
-        # Respaldo de seguridad si el archivo JSON falla
         datos_curso = {
             "Principiantes": [{"en": "Coffee, please.", "pron": "kófi, plis.", "es": "Café, por favor."}],
             "Avanzados": [{"en": "I am looking for a job.", "pron": "ái ám lúking for e dchób.", "es": "Estoy buscando trabajo."}]
         }
 
-    # Control de nivel
     estado = {"nivel": "Principiantes", "indice": 0}
 
     nombres_etapas = {
@@ -46,7 +43,7 @@ def main(page: ft.Page):
     txt_tu_voz = ft.Text(value="Tu transcripción aparecerá aquí...", size=16, color="grey", italic=True, text_align=ft.TextAlign.CENTER)
     txt_resultado = ft.Text(value="", size=18, weight=ft.FontWeight.BOLD, text_align=ft.TextAlign.CENTER)
     
-def actualizar_pantalla():
+    def actualizar_pantalla():
         nivel = estado["nivel"]
         indice = estado["indice"]
         
@@ -67,27 +64,26 @@ def actualizar_pantalla():
         page.update()
 
     # NAVEGACIÓN
-def cambiar_a_principiantes(e):
+    def cambiar_a_principiantes(e):
         txt_resultado.value = ""
         estado["nivel"] = "Principiantes"
         estado["indice"] = 0
         actualizar_pantalla()
 
-def cambiar_a_avanzados(e):
+    def cambiar_a_avanzados(e):
         txt_resultado.value = ""
         estado["nivel"] = "Avanzados"
         estado["indice"] = 0
         actualizar_pantalla()
 
-    # AUDIO TUTOR (Usa la voz del propio navegador de internet)
-def escuchar_tutor(e):
+    # AUDIO TUTOR (Voz nativa del navegador)
+    def escuchar_tutor(e):
         nivel = estado["nivel"]
         indice = estado["indice"]
         frase = datos_curso[nivel][indice]["en"]
         
         frase_limpia = frase.replace("'", "\\'")
         
-        # Le dice al navegador: "Habla tú en inglés"
         codigo_js = f"""
         var msg = new SpeechSynthesisUtterance('{frase_limpia}');
         msg.lang = 'en-US';
@@ -98,18 +94,18 @@ def escuchar_tutor(e):
         except Exception as error:
             print(f"Error con la voz nativa: {error}")
 
-    # MICRÓFONO
-def escuchar_alumno(e):
+    # MICRÓFONO (Versión limpia para la Web)
+    def escuchar_alumno(e):
         txt_resultado.value = ""
         txt_tu_voz.value = "Micro del navegador en desarrollo..."
         txt_tu_voz.color = "orange"
         page.update()
 
-def revelar_clic(e):
+    def revelar_clic(e):
         txt_espanol.visible = True
         page.update()
 
-def acierto_juego(e):
+    def acierto_juego(e):
         txt_resultado.value = ""
         nivel = estado["nivel"]
         indice = estado["indice"]
@@ -119,7 +115,7 @@ def acierto_juego(e):
             estado["indice"] = 0
         actualizar_pantalla()
 
-def fallo_juego(e):
+    def fallo_juego(e):
         nivel = estado["nivel"]
         indice = estado["indice"]
         if len(datos_curso[nivel]) > 1:
@@ -132,8 +128,8 @@ def fallo_juego(e):
             txt_resultado.color = "blue"
         actualizar_pantalla()
 
-    # BOTONES CON ELEVATEDBUTTON PARA EVITAR ERRORES WEB
-        fila_niveles = ft.Row(
+    # BOTONES ALINEADOS CORRECTAMENTE
+    fila_niveles = ft.Row(
         controls=[
             ft.ElevatedButton("🌱 Principiantes", on_click=cambiar_a_principiantes),
             ft.ElevatedButton("🚀 Avanzados", on_click=cambiar_a_avanzados),
