@@ -14,7 +14,7 @@ def main(page: ft.Page):
         style=ft.TextThemeStyle.BODY_SMALL,
         opacity=0.3,
         italic=True,          
-        color="gray400"
+        color="grey400"
     )
     
     # CARGA DE FRASES
