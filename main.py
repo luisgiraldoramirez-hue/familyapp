@@ -70,22 +70,22 @@ def main(page: ft.Page):
         estado["indice"] = 0
         actualizar_pantalla()
         
-   # AUDIO TUTOR (Versión Web compatible con Netlify)
+    # AUDIO TUTOR
     def escuchar_tutor(e):
         nivel = estado["nivel"]
         indice = estado["indice"]
         frase = datos_curso[nivel][indice]["en"]
         
-      
         frase_url = frase.replace(" ", "%20")
         enlace_google = f"https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q={frase_url}"
         
         try:
             audio_web.src = enlace_google
+            page.update()
             audio_web.play()
         except Exception as error:
             print(f"Error al reproducir en la web: {error}")
-
+            
     def escuchar_alumno(e):
         txt_resultado.value = ""
         try:
