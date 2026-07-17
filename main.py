@@ -1,6 +1,6 @@
 import flet as ft
 import json
-import speech_recognition as sr
+#import speech_recognition as sr
 
 def main(page: ft.Page):
     page.title = "Laboratorio de Inglés - FamilyApp"
@@ -99,56 +99,11 @@ def main(page: ft.Page):
             print(f"Error con la voz nativa: {error}")
 
     # MICRÓFONO
-    def escuchar_alumno(e):
+  def escuchar_alumno(e):
         txt_resultado.value = ""
-        txt_tu_voz.value = "Calibrando silencio... ¡Espera un segundo!"
+        txt_tu_voz.value = "Micro del navegador en desarrollo..."
         txt_tu_voz.color = "orange"
-        page.update()
-        page.run_task(escuchar_mic_segundo_plano)
-
-    async def escuchar_mic_segundo_plano():
-        r = sr.Recognizer()
-        try:
-            with sr.Microphone() as origen:
-                r.adjust_for_ambient_noise(origen, duration=0.4)
-                r.dynamic_energy_threshold = True
-                r.pause_threshold = 1.0
-                
-                txt_tu_voz.value = "¡¡ HABLA AHORA !! 🎤"
-                txt_tu_voz.color = "red"
-                page.update()
-                
-                audio = r.listen(origen, timeout=4, phrase_time_limit=5)
-                
-                txt_tu_voz.value = "Procesando tu voz..."
-                txt_tu_voz.color = "blue"
-                page.update()
-                
-                texto_dicho = r.recognize_google(audio, language="en-US")
-                txt_tu_voz.value = f'Dijiste: "{texto_dicho}"'
-                txt_tu_voz.color = "black"
-                
-                frase_correcta = txt_ingles.value.lower().replace(".", "").replace("?", "").replace(",", "").strip()
-                frase_usuario = texto_dicho.lower().replace(".", "").replace("?", "").replace(",", "").strip()
-                
-                if frase_usuario == frase_correcta:
-                    txt_resultado.value = "¡Perfecto! 🟢 Excelente pronunciación."
-                    txt_resultado.color = "green"
-                else:
-                    txt_resultado.value = "Casi... 🔴 Inténtalo de nuevo."
-                    txt_resultado.color = "red"
-                    
-        except sr.WaitTimeoutError:
-            txt_tu_voz.value = "Error: Se agotó el tiempo. No se escuchó nada."
-            txt_tu_voz.color = "red"
-        except sr.UnknownValueError:
-            txt_tu_voz.value = "Error: ¡Presta atención e inténtalo de nuevo!"
-            txt_tu_voz.color = "red"
-        except Exception as error:
-            txt_tu_voz.value = f"Error del micrófono: {error}"
-            txt_tu_voz.color = "red"
-            
-        page.update()
+        page.update():
 
     def revelar_clic(e):
         txt_espanol.visible = True
